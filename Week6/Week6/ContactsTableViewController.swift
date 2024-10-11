@@ -7,14 +7,15 @@
 
 import UIKit
 
-class ContactsTableViewController: UITableViewController {
+class ContactsTableViewController: UITableViewController, AddNewContactDelegateProtocol {
+
 
    // var contactManager = UIApplication.shared.delegate as! AppDelegate
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
           }
 
     // MARK: - Table view data source
@@ -40,9 +41,24 @@ class ContactsTableViewController: UITableViewController {
         if segue.identifier == "todetails"{
             var cvc = segue.destination as! ContactViewController
             cvc.selectedIndex = tableView.indexPathForSelectedRow!.row
+        } else {
+            var avc = segue.destination as! AddNewViewController
+            avc.delegate = self
         }
+        
     }
 
+    
+    func saveNewContactdidFinishWithContact(newContact: Contact) {
+        ContactManager.shared.addNewContact(c: newContact)
+        tableView.reloadData()
+    }
+    
+    func saveNewContactDidCanceled() {
+        
+    }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

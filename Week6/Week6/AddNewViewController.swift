@@ -7,8 +7,14 @@
 
 import UIKit
 
-class AddNewViewController: UIViewController {
+protocol AddNewContactDelegateProtocol {
+    func saveNewContactdidFinishWithContact(newContact: Contact)
+    func saveNewContactDidCanceled()
+}
 
+class AddNewViewController: UIViewController {
+    
+    var delegate : AddNewContactDelegateProtocol? 
     
     @IBOutlet weak var nameText: UITextField!
     
@@ -29,8 +35,8 @@ class AddNewViewController: UIViewController {
         
         if let goodName = nameText.text , let goodemail = emailText.text, let goodPhone = phoneText.text {
             if !goodName.isEmpty , !goodemail.isEmpty, !goodPhone.isEmpty {
-                var newContact = Contact(name: goodName, email: goodemail, phoneNumber: goodPhone)
-                
+                let newContact = Contact(name: goodName, email: goodemail, phoneNumber: goodPhone)
+                delegate?.saveNewContactdidFinishWithContact(newContact: newContact)
                 dismiss(animated: true)
                 
             }
@@ -41,8 +47,20 @@ class AddNewViewController: UIViewController {
     
     
     @IBAction func CancelClicked(_ sender: Any) {
+        let alert = UIAlertController(title: "Carefull!!!!", message: "Are you sure you want to cancel? ", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive,handler: { action in
+            self.delegate?.saveNewContactDidCanceled()
+            self.dismiss(animated: true)
+        }))
         
-        dismiss(animated: true)
+        alert.addAction(UIAlertAction(title: "No", style: .default))
+//
+       present(alert, animated: true)
+//    
+      
+        
+        
+        
 
     }
     
