@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var changeColor: UISwitch!
     
     @IBOutlet weak var nameText: UITextField!
     
@@ -16,6 +17,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         print("View Did Load - White")  
     }
+    
+    @IBAction func changeColorSwitch(_ sender: Any) {
+        
+        view.backgroundColor = UIColor(red: 1, green: 200/255, blue: 0, alpha: 1)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         print("View Will Apppear - White")
