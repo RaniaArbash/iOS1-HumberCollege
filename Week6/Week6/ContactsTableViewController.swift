@@ -12,6 +12,9 @@ class ContactsTableViewController: UITableViewController, AddNewContactDelegateP
 
    // var contactManager = UIApplication.shared.delegate as! AppDelegate
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +32,11 @@ class ContactsTableViewController: UITableViewController, AddNewContactDelegateP
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactTableViewCell
 
-        cell.textLabel?.text = ContactManager.shared.contactList[indexPath.row].name
-        cell.detailTextLabel?.text = ContactManager.shared.contactList[indexPath.row].phoneNumber
+        cell.nameText.text = ContactManager.shared.contactList[indexPath.row].name
+        cell.phoneText?.text = ContactManager.shared.contactList[indexPath.row].phoneNumber
+        cell.emailText.text = ContactManager.shared.contactList[indexPath.row].email
         
         return cell
     }
