@@ -9,8 +9,16 @@ import UIKit
 
 class WeatherViewController: UIViewController , NetworkingDelegate{
 
+    @IBOutlet weak var feelsLikeText: UILabel!
     
-
+    @IBOutlet weak var weatherIcon: UIImageView!
+    
+    @IBOutlet weak var tempText: UILabel!
+    
+    @IBOutlet weak var descText: UILabel!
+    
+    
+    @IBOutlet weak var windSpeedText: UILabel!
     var selectedCity: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +37,34 @@ class WeatherViewController: UIViewController , NetworkingDelegate{
     func networkingDidFinishWithWeatherObj(wo: WeatherModel) {
         
         DispatchQueue.main.async {
-            print( wo.main.temp)
-            print( wo.main.feels_like)
-            print( wo.weather[0].description)
-            print(wo.wind.speed)
             
+            self.descText.text = wo.weather[0].description
+            self.tempText.text = "Temp: \(wo.main.temp)"
+            self.feelsLikeText.text = "Feels Like: \(wo.main.feels_like)"
+            self.windSpeedText.text =  "Wind Speed: \(wo.wind.speed)"
+            self.downloadIcon(icon:wo.weather[0].icon)
             
         }
         
+    }
+    
+    func downloadIcon(icon:String){
+            var url = URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png")!
+           
+            var myQ = DispatchQueue(label: "myQ")
+        myQ.async {
+            do{
+                var imgData = try  Data(contentsOf: url)
+                
+                DispatchQueue.main.async {
+                    self.weatherIcon.image = UIImage(data: imgData)
+                    
+                }
+                
+            }catch {
+                print(error)
+            }
+        }
     }
     
     func networkingDidFail() {

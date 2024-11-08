@@ -20,9 +20,13 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
         super.viewDidLoad()
 
         searchBar.delegate = self
-        NetworkingManager.shared.delegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NetworkingManager.shared.delegate = self
+
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         
         print(searchText)

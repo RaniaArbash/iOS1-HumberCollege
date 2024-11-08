@@ -53,9 +53,6 @@ class NetworkingManager {
         
     }
     
-    
-    
-    
     func getWeather(city: String) {
         // my code run in a different thread - not in main thread
         
