@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class StudentInfo : Decodable{
     
     var student: String
