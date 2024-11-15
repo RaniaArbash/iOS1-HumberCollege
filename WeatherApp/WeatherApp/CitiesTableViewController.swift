@@ -9,7 +9,6 @@ import UIKit
 
 class CitiesTableViewController: UITableViewController, UISearchBarDelegate, NetworkingDelegate {
    
-    
 
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -31,7 +30,21 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
         
         print(searchText)
         if searchText.count > 2{
-            NetworkingManager.shared.getCitiesFromAPI(city: searchText)
+           
+            NetworkingManager.shared.getCitiesFromAPI(city: searchText) { result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                    
+                case .success(let list):
+                    self.apiCities = list
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                
+                }
+                
+            }
         }
         else {
             apiCities = [String]()

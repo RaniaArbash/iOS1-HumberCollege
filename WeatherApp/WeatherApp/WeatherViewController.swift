@@ -20,15 +20,37 @@ class WeatherViewController: UIViewController , NetworkingDelegate{
     
     @IBOutlet weak var windSpeedText: UILabel!
     var selectedCity: String = ""
+    
+    var notificationName = (UIApplication.shared.delegate as! AppDelegate).notificationName
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let myNotification = Notification.Name(notificationName)
+
         self.title = selectedCity
         NetworkingManager.shared.delegate = self
         NetworkingManager.shared.getWeather(city: selectedCity)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: myNotification, object: nil)
     }
     
 
+    @objc
+    func updateUI(_ notification: Notification){
+        
+        var wo = notification.userInfo!["weatherObj"] as! WeatherModel
+        DispatchQueue.main.async {
+            self.descText.text = wo.weather[0].description
+            self.tempText.text = "Temp: \(wo.main.temp)"
+            self.feelsLikeText.text = "Feels Like: \(wo.main.feels_like)"
+            self.windSpeedText.text =  "Wind Speed: \(wo.wind.speed)"
+            self.downloadIcon(icon:wo.weather[0].icon)
+        }
+        
+    }
+    
     
     func networkingDidFinishWithListOfCities(cities: [String]) {
         
