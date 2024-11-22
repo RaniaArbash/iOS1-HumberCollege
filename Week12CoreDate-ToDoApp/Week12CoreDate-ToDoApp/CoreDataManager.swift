@@ -16,6 +16,7 @@ class CoreDataManager {
     // select task where -----
     // delete a task
     
+    static var shared = CoreDataManager()
     
     func getAllToDosFromDB() -> [ToDo]{
         
@@ -41,7 +42,7 @@ class CoreDataManager {
         var dataabseList = [ToDo]()
        
         var fetchRequest : NSFetchRequest<ToDo> = ToDo.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "task CONTAINS %@", searchTask)
+        fetchRequest.predicate = NSPredicate(format: "task CONTAINS[c] %@", searchTask)
     
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: "task", ascending: true),
