@@ -11,10 +11,19 @@ class ViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataS
     
     var myInt = 9
    
+    var letters = ["a","b","c","d","e","f"]
+    var colleges = ["Humber College", "Seneca College","Centennial College"]
     
+    var numbers = ["1","2","3","4","5","6"]
+    
+    // display the component number and the row number in myLable after clicking on any row/component
     
     
     @IBOutlet weak var myFirstPickerView: UIPickerView!
+    
+    
+    @IBOutlet weak var mySecondPickerView: UIPickerView!
+    
     
     var studentMangerModel : StudentManeger?
     
@@ -25,6 +34,12 @@ class ViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataS
         
         myFirstPickerView.delegate = self
         myFirstPickerView.dataSource = self
+        myFirstPickerView.tag = 1
+        
+        mySecondPickerView.delegate = self
+        mySecondPickerView.dataSource = self
+        mySecondPickerView.tag = 2
+        
         
         studentMangerModel = (UIApplication.shared.delegate as! AppDelegate).myModel
         
@@ -34,6 +49,17 @@ class ViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataS
         }
             
 
+    }
+    
+    
+    @IBAction func updateBothPickers(_ sender: Any) {
+    
+        letters.append("g")
+        numbers.append("7")
+        myFirstPickerView.reloadAllComponents()
+        mySecondPickerView.reloadAllComponents()
+        
+        
     }
     
     func updateMyInt(){
@@ -47,28 +73,44 @@ class ViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataS
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 4
+        return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        if pickerView.tag == 1{
+            return numbers.count
+        }
+        else {
+            return letters.count
+        }
     }
 
     func pickerView(_ pickerView: UIPickerView, 
                     titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        
-        if component == 0 {
-            return "iOS1"
-        }else if component == 1 {
-            return "iOS2"
+        if pickerView.tag == 1{
+            return numbers[row]
         }
-        else if component == 2 {
-            return "Swift"
+        else {
+            return letters[row]
         }
         
-        return "Humber"
+      
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        if pickerView.tag == 1 { // 5 ==> remove 5 from numbers and add it to letters
+            letters.append(numbers[row])
+            numbers.remove(at: row)
+        }
+        else {
+            numbers.append(letters[row])
+            letters.remove(at: row)
+        }
+        myFirstPickerView.reloadAllComponents()
+        mySecondPickerView.reloadAllComponents()
+    }
+
     
     
     
