@@ -13,6 +13,7 @@
 		211AB27F2D4D445E00771D63 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 211AB27E2D4D445E00771D63 /* Base */; };
 		211AB2812D4D446000771D63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211AB2802D4D446000771D63 /* Assets.xcassets */; };
 		211AB2842D4D446000771D63 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 211AB2832D4D446000771D63 /* Base */; };
+		211AB28C2D4D50FF00771D63 /* ModelClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211AB28B2D4D50FF00771D63 /* ModelClasses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		211AB2802D4D446000771D63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		211AB2832D4D446000771D63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		211AB2852D4D446000771D63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		211AB28B2D4D50FF00771D63 /* ModelClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelClasses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				211AB2802D4D446000771D63 /* Assets.xcassets */,
 				211AB2822D4D446000771D63 /* LaunchScreen.storyboard */,
 				211AB2852D4D446000771D63 /* Info.plist */,
+				211AB28B2D4D50FF00771D63 /* ModelClasses.swift */,
 			);
 			path = Week4;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211AB28C2D4D50FF00771D63 /* ModelClasses.swift in Sources */,
 				211AB27C2D4D445E00771D63 /* ViewController.swift in Sources */,
 				211AB2782D4D445E00771D63 /* AppDelegate.swift in Sources */,
 				211AB27A2D4D445E00771D63 /* SceneDelegate.swift in Sources */,
