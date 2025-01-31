@@ -19,6 +19,10 @@
                             <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k1X-Gy-UUx">
                                 <rect key="frame" x="16" y="256" width="357" height="181"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="nZO-ts-m8B"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="iEt-Tm-oAP"/>
+                                </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpY-Jc-idD">
                                 <rect key="frame" x="93" y="157" width="229" height="91"/>
