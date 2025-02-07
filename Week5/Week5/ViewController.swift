@@ -39,12 +39,15 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       var redVC =  segue.destination as! RedViewController
-        
-        if let userInput = nameText.text , !userInput.isEmpty {
+        if (segue.identifier == "red"){
             
-            redVC.userName = userInput
+            var redVC =  segue.destination as! RedViewController
             
+            if let userInput = nameText.text , !userInput.isEmpty {
+                
+                redVC.userName = userInput
+                
+            }
         }
         
     }

@@ -9,16 +9,27 @@ import UIKit
 
 class GreenViewController: UIViewController {
 
+    
+    @IBOutlet weak var progresaV: UIProgressView!
+    
+    @IBOutlet weak var selectedValue: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        selectedValue.text = "\(progresaV.progress)"
         // Do any additional setup after loading the view.
     }
     
     
+    
+    
+    
+    
     @IBAction func cloaseVC(_ sender: Any) {
         
-        dismiss(animated: true)
+        var valueToPass = progresaV.progress
+      dismiss(animated: true)
         
     }
     
