@@ -13,7 +13,7 @@ class Student {
     var email : String = ""
     var imageData : Data?
     
-    init(id =  UUID(), name: String, email: String, imageData: Data? = nil) {
+    init(name: String, email: String, imageData: Data? = nil) {
         self.name = name
         self.email = email
         self.imageData = imageData

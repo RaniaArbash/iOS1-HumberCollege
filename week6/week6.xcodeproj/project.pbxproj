@@ -13,7 +13,7 @@
 		2187ABAE2D5FB95E0026FFBA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2187ABAD2D5FB95E0026FFBA /* Base */; };
 		2187ABB02D5FB95F0026FFBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2187ABAF2D5FB95F0026FFBA /* Assets.xcassets */; };
 		2187ABB32D5FB95F0026FFBA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2187ABB22D5FB95F0026FFBA /* Base */; };
-		2187ABBB2D5FBB4A0026FFBA /* Models in Sources */ = {isa = PBXBuildFile; fileRef = 2187ABBA2D5FBB4A0026FFBA /* Models */; };
+		2187ABBB2D5FBB4A0026FFBA /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2187ABBA2D5FBB4A0026FFBA /* Models.swift */; };
 		2187ABBD2D5FBE490026FFBA /* StudentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2187ABBC2D5FBE490026FFBA /* StudentListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +26,7 @@
 		2187ABAF2D5FB95F0026FFBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2187ABB22D5FB95F0026FFBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2187ABB42D5FB95F0026FFBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2187ABBA2D5FBB4A0026FFBA /* Models */ = {isa = PBXFileReference; lastKnownFileType = text; path = Models; sourceTree = "<group>"; };
+		2187ABBA2D5FBB4A0026FFBA /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		2187ABBC2D5FBE490026FFBA /* StudentListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +67,7 @@
 				2187ABAF2D5FB95F0026FFBA /* Assets.xcassets */,
 				2187ABB12D5FB95F0026FFBA /* LaunchScreen.storyboard */,
 				2187ABB42D5FB95F0026FFBA /* Info.plist */,
-				2187ABBA2D5FBB4A0026FFBA /* Models */,
+				2187ABBA2D5FBB4A0026FFBA /* Models.swift */,
 				2187ABBC2D5FBE490026FFBA /* StudentListTableViewController.swift */,
 			);
 			path = week6;
@@ -148,7 +148,7 @@
 				2187ABBD2D5FBE490026FFBA /* StudentListTableViewController.swift in Sources */,
 				2187ABA72D5FB95E0026FFBA /* AppDelegate.swift in Sources */,
 				2187ABA92D5FB95E0026FFBA /* SceneDelegate.swift in Sources */,
-				2187ABBB2D5FBB4A0026FFBA /* Models in Sources */,
+				2187ABBB2D5FBB4A0026FFBA /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
