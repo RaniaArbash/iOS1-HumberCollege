@@ -7,10 +7,20 @@
 
 import UIKit
 
+protocol AddingNewStudentDelegate{
+    
+    func addingNewStudentDidFinishWithStudnetObject(newStudent: Student)
+    func addingNewStudentDidCancel()
+}
+
+
 class ViewController: UIViewController ,
                         UIImagePickerControllerDelegate,
                       UINavigationControllerDelegate {
 
+    
+    var delegate : AddingNewStudentDelegate?
+    
     var selectedImageData : Data? = UIImage(named: "img")?.pngData()
     
     @IBOutlet weak var nameText: UITextField!
@@ -72,16 +82,18 @@ class ViewController: UIViewController ,
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     
                     var newStd = Student(name: name, email: email, imageData: self.selectedImageData)
-                    self.model?.addNewStudent(newStd: newStd)
+                  //  self.model?.addNewStudent(newStd: newStd)
                     self.selectedImageData = UIImage(named: "img")?.pngData()
                    
+                    self.delegate?.addingNewStudentDidFinishWithStudnetObject(newStudent: newStd)
+                    self.dismiss(animated: true)
+                    
                 }))
                 
                 present(alert, animated: true)
                 nameText.text = ""
                 emailText.text = ""
                 userImage.image = UIImage(named: "img")
-          
                     
             }else {
                 
@@ -96,6 +108,13 @@ class ViewController: UIViewController ,
         
         
     }
+    
+    
+    @IBAction func CancelClicked(_ sender: Any) {
+        delegate?.addingNewStudentDidCancel()
+        dismiss(animated: true)
+    }
+    
     
     
 
