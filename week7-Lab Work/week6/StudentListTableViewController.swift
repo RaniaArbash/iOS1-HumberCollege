@@ -7,8 +7,8 @@
 
 import UIKit
 
-class StudentListTableViewController: UITableViewController , AddingNewStudentDelegate{
-  
+class StudentListTableViewController: UITableViewController , AddingNewStudentDelegate, UpdatingStudentDelegate {
+    
 
     var model: StudentManager?
 
@@ -70,6 +70,8 @@ class StudentListTableViewController: UITableViewController , AddingNewStudentDe
         return true
     }
 
+
+
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -78,7 +80,18 @@ class StudentListTableViewController: UITableViewController , AddingNewStudentDe
             tableView.reloadData()
         }
     }
- 
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        let selectedStudent = model?.studentsList[indexPath.row]
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let viewController = storyBoard.instantiateViewController(withIdentifier: "add_student") as! ViewController
+//        viewController.updateDelegate = self
+//        viewController.studentToUUpdate = selectedStudent
+//        self.navigationController?.present(viewController, animated: true)
+//        
+//    }
+// 
 
     /*
     // Override to support rearranging the table view.
@@ -103,8 +116,25 @@ class StudentListTableViewController: UITableViewController , AddingNewStudentDe
        
        var addingVC =  segue.destination as! ViewController
         addingVC.delegate = self
+        if let selectIndex = tableView.indexPathForSelectedRow {
+            addingVC.updateDelegate = self
+            addingVC.studentToUUpdate = model?.studentsList[selectIndex.row]
+            tableView.deselectRow(at: selectIndex, animated: false)
+        }
+    }
+    
+
+    func updateNewStudentDidFinishWith(updatedStudent: Student) {
+        model?.updateStudent(updatedStudent: updatedStudent)
+        
+        tableView?.reloadData()
+    }
+    
+    func updateNewStudentDidCancel() {
         
     }
     
+    
+  
 
 }
