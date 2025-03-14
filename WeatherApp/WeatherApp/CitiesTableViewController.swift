@@ -7,7 +7,9 @@
 
 import UIKit
 
-class CitiesTableViewController: UITableViewController, UISearchBarDelegate {
+class CitiesTableViewController: UITableViewController, UISearchBarDelegate, NetworkingDelegate {
+   
+    
     
     @IBOutlet var searchBar: UITableView!
     var listOfCites = [String]()
@@ -15,19 +17,29 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-
-//        NetworkingManager.shared.getAllCitiesFromAPI(searchTerm: <#T##String#>)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+//        var q = DispatchQueue(label: "myQ")
+//        q.async {
+//            // any code to run in background thread
+//            // download an image
+//            // when the image is ready
+//            DispatchQueue.main.async {
+//                // update the UI 
+//            }
+//        }
+        
+        NetworkingManager.shared.delegate = self
     }
 
     // MARK: - Table view data source
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         print(searchText)
+        if searchText.isEmpty {
+            listOfCites = []
+            tableView.reloadData()
+        }
         if searchText.count > 2 {
             NetworkingManager.shared.getAllCitiesFromAPI(searchTerm: searchText)
 
@@ -48,8 +60,16 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         cell.textLabel?.text = listOfCites[indexPath.row]
-        
         return cell
+    }
+    func networkingDidFinishWithResult(list: [String]) {
+        listOfCites = list
+        tableView.reloadData()
+    }
+    
+    func networkingDidFail() {
+        listOfCites = []
+        tableView.reloadData()
     }
 
 
