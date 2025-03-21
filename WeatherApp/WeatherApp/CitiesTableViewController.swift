@@ -17,19 +17,9 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+    
         
-        
-//        var q = DispatchQueue(label: "myQ")
-//        q.async {
-//            // any code to run in background thread
-//            // download an image
-//            // when the image is ready
-//            DispatchQueue.main.async {
-//                // update the UI 
-//            }
-//        }
-        
-        NetworkingManager.shared.delegate = self
+        NetworkingManager.shared.networkingDelegate = self
     }
 
     // MARK: - Table view data source
@@ -108,14 +98,18 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+       var WVC =   segue.destination as! WeatherViewController
+        WVC.selectedCity =  listOfCites[(tableView.indexPathForSelectedRow?.row)!]
+        
+        
+
+
     }
-    */
+   
 
 }
