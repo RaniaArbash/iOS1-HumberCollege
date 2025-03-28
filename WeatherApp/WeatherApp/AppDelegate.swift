@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data Saving support
     lazy var persistentContainer: NSPersistentContainer = {
         
-        let container = NSPersistentContainer(name: "fav_cities")
+        let container = NSPersistentContainer(name: "weatherapp_coredata_model")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 

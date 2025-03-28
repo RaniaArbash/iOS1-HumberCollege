@@ -18,13 +18,14 @@ class CoreDataManager {
     // add new city
     
     func addNewCityToDB(name: String) {
-    
-        
-        let newCity = City(context: context)
-        newCity.id = UUID()
-        newCity.cityName = name
-        saveContext()
-        
+
+       var dbresult =  filterCitiesInDB(query: name)
+        if (dbresult.count == 0){
+            let newCity = City(context: context)
+            newCity.id = UUID()
+            newCity.cityName = name
+            saveContext()
+        }
         
     }
     
@@ -50,24 +51,24 @@ class CoreDataManager {
         return dblist
     }
    
-    func filterCitiesInDB (query : String){
+    func filterCitiesInDB (query : String) -> [City]{
        
        // select * from City order by cityName where cityName beigens 't'
-     
+        var dblist = [City]()
         var fetchRequest =  City.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "cityName", ascending: true)]
         
-      var predicate =  NSPredicate(format: "cityName BEGINS WITH [c] %@" ,query)
+      var predicate =  NSPredicate(format: "cityName like [c] %@" ,query)
         fetchRequest.predicate = predicate
         
         do {
-            var resutls = try  context.fetch(fetchRequest)
+            dblist = try  context.fetch(fetchRequest)
             // update ui
             
         }catch {
             print("error")
         }
-        
+        return dblist
     }
     
     // delete one city

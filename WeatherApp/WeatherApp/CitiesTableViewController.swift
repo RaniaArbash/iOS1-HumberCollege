@@ -68,12 +68,9 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             // save to db
             CoreDataManager.shared.addNewCityToDB(name: self.listOfCites[indexPath.row])
-            self.performSegue(withIdentifier: "toweather", sender: nil)
 
         }))
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
-            // go to weather
-            self.performSegue(withIdentifier: "toweather", sender: nil)
 
             
         }))
