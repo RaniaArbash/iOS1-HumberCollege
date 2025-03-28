@@ -62,6 +62,25 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
         tableView.reloadData()
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var alert = UIAlertController(title: "Saving City", message: "Do you want to save this city to your favorit cites", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            // save to db
+            CoreDataManager.shared.addNewCityToDB(name: self.listOfCites[indexPath.row])
+            self.performSegue(withIdentifier: "toweather", sender: nil)
+
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
+            // go to weather
+            self.performSegue(withIdentifier: "toweather", sender: nil)
+
+            
+        }))
+        
+        present(alert, animated: true)
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -103,9 +122,11 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       var WVC =   segue.destination as! WeatherViewController
-        WVC.selectedCity =  listOfCites[(tableView.indexPathForSelectedRow?.row)!]
-        
+       
+        if segue.identifier == "toweather"{
+            var WVC =   segue.destination as! WeatherViewController
+            WVC.selectedCity =  listOfCites[(tableView.indexPathForSelectedRow?.row)!]
+        }
         
 
 
